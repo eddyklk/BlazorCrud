@@ -1,0 +1,69 @@
+﻿@page "/"
+
+@inject IBookService BookService
+
+<h1>Books</h1>
+
+<p> Esto es para mostrar mensaje.</p>
+@Mensaje
+
+<div><!--<i> hace referencia a cursivas-->
+    <a href="/BookDetails"> <i>Agregar nuevo libro</i> </a> 
+</div>
+
+@if (books == null)
+{
+    <p> <em>Cargando...</em></p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Autor</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var book in books)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Autor</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+
+
+
+
+@code
+{
+    public IEnumerable<Book> books { get; set; }
+    public string Mensaje { get; set; }
+
+
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            books = await BookService.GetAllBook();
+        }
+        catch (Exception e)
+        {
+
+            Mensaje = e.Message;
+        }
+
+    }
+
+}

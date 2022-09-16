@@ -1,6 +1,6 @@
 
 using BlazorCrud.Data;
-using Cuentus.Models;
+using BlazorCrud.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
