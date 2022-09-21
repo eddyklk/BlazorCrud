@@ -1,35 +1,34 @@
-﻿@page "/BookDelete"
-@page "/BookDelete/{id:int}"
+﻿@page "/BookDelete/{id:int}"
 @inject IBookService BookService
 @inject NavigationManager NavigationManager
 
 
 
-<h1>Book Delete </h1>
+<h1>Book Delete</h1>
 <p style="color:red; text-align:center">Estas seguro que quieres borrar el este libro?</p>
 
-<EditForm Model="@Book">
-
-    <table class="table">
+<EditForm Model="@book">
+  <table class="table">
 
         <tr>
             <td>Title:</td>
-            <td><input class="form-control col-sm-4" type="text" @bind="Book.Title" /></td>
+            <td align="left"<input class="form-control col-sm-4" type="text" @bind="book.Title" /></td>
         </tr>
 
         <tr>
             <td>Autor:</td>
-            <td><input class="form-control col-sm-4" type="text" @bind="Book.Autor" /></td>
+            <td><input class="form-control col-sm-4" type="text" @bind="book.Autor" /></td>
         </tr>
 
         <tr>
             <td colspan="2" style="text-align:center">
-                <input type="submit" value="Save" @onclick="DeleteBook" />
+                <input type="submit" value="Eliminar" @onclick="DeleteBook" />
                 <input type="button" Value="Cancel" @onclick="Cancel" />
             </td>
         </tr>
 
     </table>
+
 </EditForm>
 
 
@@ -46,7 +45,7 @@
         book = await BookService.GetBookDetails(id);
     }
 
-    protected async Task DeleteB()
+    protected async Task DeleteBook()
     {
         await BookService.DeleteBook(id);
         NavigationManager.NavigateTo("/");
